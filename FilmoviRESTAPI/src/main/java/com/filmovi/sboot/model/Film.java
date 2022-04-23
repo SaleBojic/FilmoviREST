@@ -5,63 +5,77 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="filmovi")
+@Table(name="FILMOVI")
 public class Film {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(nullable=false)
+	@Column(name="NAZIV" ,nullable=false)
 	private String naziv;
 	
 	//izrazeno u minutima
-	@Column(nullable=false)
+	@Column(name="TRAJANJE" , nullable=false)
 	private double trajanje;
 	
-	@Column(nullable=false)
+	@Column(name="ZANR" , nullable=false)
 	private String zanr;
 	
-	@Column(name="godina_izdanja" , nullable = false)
+	@Column(name="GODINA_IZDANJA" , nullable = false)
 	private int godinaIzdanja;
 	
-	
+	@ManyToOne
+	private Reziser reziser;
 	
 	public long getId() {
 		return id;
 	}
-	public void setId(long id) {
-		this.id = id;
-	}
-	public int getGodinaIzdanja() {
-		return godinaIzdanja;
-	}
-	public void setGodinaIzdanja(int godinaIzdanja) {
-		this.godinaIzdanja = godinaIzdanja;
-	}
-	//private Reziser reziser;
+	
 	public String getNaziv() {
 		return naziv;
 	}
+	
 	public void setNaziv(String naziv) {
 		this.naziv = naziv;
 	}
+	
 	public double getTrajanje() {
 		return trajanje;
 	}
+	
 	public void setTrajanje(double trajanje) {
 		this.trajanje = trajanje;
 	}
+	
 	public String getZanr() {
 		return zanr;
 	}
+	
 	public void setZanr(String zanr) {
 		this.zanr = zanr;
 	}
 	
+	public int getGodinaIzdanja() {
+		return godinaIzdanja;
+	}
+	
+	public void setGodinaIzdanja(int godinaIzdanja) {
+		this.godinaIzdanja = godinaIzdanja;
+	}
+	
+	public Reziser getReziser() {
+		return reziser;
+	}
+
+	public void setReziser(Reziser reziser) {
+		this.reziser = reziser;
+	}
+
 	@Override
 	public String toString() {
 		return "Film [id=" + id + ", naziv=" + naziv + ", trajanje=" + trajanje + ", zanr=" + zanr + "]";
