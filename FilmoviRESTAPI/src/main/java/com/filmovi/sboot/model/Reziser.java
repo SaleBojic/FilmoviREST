@@ -71,6 +71,13 @@ public class Reziser {
 	public void setFilmovi(List<Film> filmovi) {
 		this.filmovi = filmovi;
 	}
+	
+	
+	public long getIdReziser() {
+		return idReziser;
+	}
+
+	
 
 	@Override
 	public String toString() {
@@ -123,9 +130,5 @@ public class Reziser {
 			return false;
 		return true;
 	}
-
-
-	
-	
 	
 }

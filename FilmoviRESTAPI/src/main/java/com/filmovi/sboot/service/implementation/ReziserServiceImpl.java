@@ -65,5 +65,17 @@ public class ReziserServiceImpl implements ReziserService {
 			throw new ResourceNotFoundException("Reziser","id",id);
 		}
 	}
+
+
+
+	@Override
+	public void deletReziser(Long id) {
+		Optional<Reziser> rez = reziserRepository.findById(id);
+		if(rez.isEmpty()) {
+			throw new ResourceNotFoundException("Reziser","id",id);
+		}else {
+			reziserRepository.deleteById(id);
+		}
+	}
 	
 }

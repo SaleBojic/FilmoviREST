@@ -9,4 +9,5 @@ public interface ReziserService {
 	List<Reziser> getAllReziseri();
 	Reziser getReziserById(Long id);
 	Reziser updateReziser(Reziser r, Long id);
+	void deletReziser(Long id);
 }

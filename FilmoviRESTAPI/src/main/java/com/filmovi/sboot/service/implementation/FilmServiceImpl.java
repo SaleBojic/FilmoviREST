@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.filmovi.sboot.exception.ResourceNotFoundException;
 import com.filmovi.sboot.model.Film;
+import com.filmovi.sboot.model.Reziser;
 import com.filmovi.sboot.repository.FilmRepository;
 import com.filmovi.sboot.service.FilmService;
 import com.filmovi.sboot.service.ReziserService;
@@ -31,7 +32,9 @@ public class FilmServiceImpl implements FilmService {
 	@Override
 	public Film saveFilm(Film film) {
 		System.out.println(film.getReziser());
-		rs.saveReziser(film.getReziser());
+		if(film.getReziser() != null) {
+			rs.saveReziser(film.getReziser());
+		}
 		return filmRepo.save(film);
 	}
 
@@ -58,10 +61,24 @@ public class FilmServiceImpl implements FilmService {
 			f.setTrajanje(newFilm.getTrajanje());
 			f.setGodinaIzdanja(newFilm.getGodinaIzdanja());
 			f.setZanr(newFilm.getZanr());
+			if(newFilm.getReziser() != null) {
+				Reziser newReziser = rs.updateReziser(newFilm.getReziser(), newFilm.getReziser().getIdReziser());
+				f.setReziser(newReziser);
+			}
 			filmRepo.save(f);
 			return f;
 		}else {
 			throw new ResourceNotFoundException("Film","id",id);
+		}
+	}
+
+	@Override
+	public void deleteFilm(Long id) {
+		Optional<Film> toDeleteFilm = filmRepo.findById(id);
+		if(toDeleteFilm.isEmpty()) {
+			throw new ResourceNotFoundException("Film", "id" , id);
+		}else {
+			filmRepo.deleteById(id);
 		}
 	}
 
