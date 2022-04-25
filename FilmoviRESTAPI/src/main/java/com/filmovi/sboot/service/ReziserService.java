@@ -7,4 +7,5 @@ import com.filmovi.sboot.model.Reziser;
 public interface ReziserService {
 	Reziser saveReziser(Reziser reziser);
 	List<Reziser> getAllReziseri();
+	Reziser getReziserById(Long id);
 }

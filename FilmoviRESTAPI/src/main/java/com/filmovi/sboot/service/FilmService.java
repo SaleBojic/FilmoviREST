@@ -7,5 +7,6 @@ import com.filmovi.sboot.model.Film;
 public interface FilmService {
 	Film saveFilm(Film film);
 	List<Film> getAllFilmovi();
-	Film getFilmById(Long id);	
+	Film getFilmById(Long id);
+	Film updateFilm(Film film,Long id);
 }
