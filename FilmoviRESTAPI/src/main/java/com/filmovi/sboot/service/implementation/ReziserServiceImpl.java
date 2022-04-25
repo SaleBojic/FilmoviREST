@@ -1,5 +1,7 @@
 package com.filmovi.sboot.service.implementation;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
@@ -25,6 +27,13 @@ public class ReziserServiceImpl implements ReziserService {
 	@Override
 	public Reziser saveReziser(Reziser reziser) {
 		return reziserRepository.save(reziser);
+	}
+
+
+
+	@Override
+	public List<Reziser> getAllReziseri() {
+		return reziserRepository.findAll();
 	}
 	
 }
