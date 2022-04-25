@@ -6,15 +6,18 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="REZISERI")
-
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","filmovi"})
 public class Reziser {
 
 	@Id
@@ -30,7 +33,7 @@ public class Reziser {
 	@Column(name="EMAIL" ,nullable=false)
 	private String email;
 	
-	@OneToMany(mappedBy="reziser" ,orphanRemoval = true , cascade={CascadeType.ALL})
+	@OneToMany(mappedBy="reziser" ,fetch = FetchType.LAZY,orphanRemoval = true , cascade={CascadeType.ALL})
 	private List<Film> filmovi;
 	
 	public Reziser() {

@@ -2,6 +2,7 @@ package com.filmovi.sboot.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,7 +31,7 @@ public class Film {
 	@Column(name="GODINA_IZDANJA" , nullable = false)
 	private int godinaIzdanja;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="idReziser")
 	private Reziser reziser;
 	
