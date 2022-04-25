@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -30,6 +31,7 @@ public class Film {
 	private int godinaIzdanja;
 	
 	@ManyToOne
+	@JoinColumn(name="idReziser")
 	private Reziser reziser;
 	
 	public long getId() {
@@ -78,7 +80,7 @@ public class Film {
 
 	@Override
 	public String toString() {
-		return "Film [id=" + id + ", naziv=" + naziv + ", trajanje=" + trajanje + ", zanr=" + zanr + "]";
+		return "Film [id=" + id + ", naziv=" + naziv + ", trajanje=" + trajanje + ", zanr=" + zanr +" reziser:" + reziser + "]";
 	}
 	@Override
 	public int hashCode() {

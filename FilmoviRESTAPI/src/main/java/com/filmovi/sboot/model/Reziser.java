@@ -3,6 +3,7 @@ package com.filmovi.sboot.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,11 +14,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="REZISERI")
+
 public class Reziser {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private long idReziser;
 
 	@Column(name="IME",nullable=false)
 	private String ime;
@@ -28,7 +30,7 @@ public class Reziser {
 	@Column(name="EMAIL" ,nullable=false)
 	private String email;
 	
-	@OneToMany(mappedBy="reziser")
+	@OneToMany(mappedBy="reziser" ,orphanRemoval = true , cascade={CascadeType.ALL})
 	private List<Film> filmovi;
 	
 	public Reziser() {
@@ -69,7 +71,7 @@ public class Reziser {
 
 	@Override
 	public String toString() {
-		return "Reziser [id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", email=" + email + ", filmovi="
+		return "Reziser [id=" + idReziser + ", ime=" + ime + ", prezime=" + prezime + ", email=" + email + ", filmovi="
 				+ filmovi + "]";
 	}
 
@@ -79,7 +81,7 @@ public class Reziser {
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((filmovi == null) ? 0 : filmovi.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + (int) (idReziser ^ (idReziser >>> 32));
 		result = prime * result + ((ime == null) ? 0 : ime.hashCode());
 		result = prime * result + ((prezime == null) ? 0 : prezime.hashCode());
 		return result;
@@ -104,7 +106,7 @@ public class Reziser {
 				return false;
 		} else if (!filmovi.equals(other.filmovi))
 			return false;
-		if (id != other.id)
+		if (idReziser != other.idReziser)
 			return false;
 		if (ime == null) {
 			if (other.ime != null)
