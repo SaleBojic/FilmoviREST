@@ -49,5 +49,21 @@ public class ReziserServiceImpl implements ReziserService {
 			throw new ResourceNotFoundException("Reziser", "id", id);
 		}
 	}
+
+
+
+	@Override
+	public Reziser updateReziser(Reziser newReziser, Long id) {
+		Reziser r = reziserRepository.findById(id).get();
+		if(r != null) {
+		r.setIme(newReziser.getIme());
+		r.setPrezime(newReziser.getPrezime());
+		r.setEmail(newReziser.getEmail());
+		reziserRepository.save(r);
+		return r;
+		}else {
+			throw new ResourceNotFoundException("Reziser","id",id);
+		}
+	}
 	
 }

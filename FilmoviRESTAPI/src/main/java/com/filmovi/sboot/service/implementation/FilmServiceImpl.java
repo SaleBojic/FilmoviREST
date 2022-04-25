@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.filmovi.sboot.exception.ResourceNotFoundException;
 import com.filmovi.sboot.model.Film;
-import com.filmovi.sboot.model.Reziser;
 import com.filmovi.sboot.repository.FilmRepository;
 import com.filmovi.sboot.service.FilmService;
 import com.filmovi.sboot.service.ReziserService;

@@ -8,4 +8,5 @@ public interface ReziserService {
 	Reziser saveReziser(Reziser reziser);
 	List<Reziser> getAllReziseri();
 	Reziser getReziserById(Long id);
+	Reziser updateReziser(Reziser r, Long id);
 }
